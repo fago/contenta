@@ -7,7 +7,7 @@ dependencies:
 id: material_admin_local_actions
 theme: material_admin
 region: content
-weight: 3
+weight: -4
 provider: null
 plugin: local_actions_block
 settings:

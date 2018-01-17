@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function recipes_custom_node_view_alter(&$build, \Drupal\node\NodeInterface $node) {
+  if ($build['#view_mode'] == 'teaser') {
+    // Remove structured data for teasers.
+    unset($build['jsonapi']);
+  }
+}
