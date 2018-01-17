@@ -1,0 +1,5 @@
+default:
+  root: /srv/default/web
+  remote-host: 'contenta.local'
+  remote-user: vagrant
+  uri: 'contenta.local'

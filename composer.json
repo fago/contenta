@@ -1,0 +1,167 @@
+{
+    "name": "drunomics/drupal-project",
+    "description": "Project template for drunomics Drupal 8 projects with composer",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "drunomics GmbH",
+            "role": "Creator."
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.2",
+        "cweagans/composer-patches": "^1.6",
+        "drupal-composer/drupal-scaffold": "^2.2",
+        "drupal/admin_toolbar": "^1.0",
+        "drupal/core": "~8.4",
+        "drush/drush": "9.0.x-dev",
+        "oomphinc/composer-installers-extender": "1.*",
+        "wikimedia/composer-merge-plugin": "1.3.*"
+    },
+    "require-dev": {
+        "behat/mink": "~1.7",
+        "behat/mink-goutte-driver": "~1.2",
+        "devinci/devinci-behat-extension": "^0.1.0",
+        "drupal/coder": "^8.2",
+        "drupal/drupal-extension": "^3.2",
+        "phpunit/phpunit": ">=4.8.28 <5",
+        "sensiolabs/security-checker": "^4.0"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drunomics.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/CleanCommand.php",
+            "scripts/composer/PharInstaller.php",
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "process-replacements": "scripts/composer/process-replacements.php",
+        "fetch-devsetup" : [
+            "mkdir devsetup-tmp",
+            "git clone git@bitbucket.org:drunomics/project-devsetup.git devsetup-tmp",
+            "rm -rf devsetup-tmp/.git",
+            "rm devsetup-tmp/README.md",
+            "cp -rf devsetup-tmp/* .",
+            "rm -rf devsetup-tmp"
+        ],
+        "install-phar-tools": [
+            "drunomics\\Composer\\PharInstaller::installPharTools"
+        ],
+        "init-setup": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "@install-phar-tools"
+        ],
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-root-package-install": [
+            "rm README.md && mv README.md.dist README.md",
+            "@fetch-devsetup",
+            "@process-replacements"
+        ],
+        "post-create-project-cmd": [
+            "cp web/sites/example.local.services.yml web/sites/local.services.yml",
+            "cp web/sites/example.local.settings.php web/sites/local.settings.php",
+            "cp web/sites/default/default.services.yml web/sites/default/services.yml",
+            "ln -sr web/sites/default/settings.vagrant.php web/sites/default/settings.php",
+            "@init-setup"
+        ],
+        "post-install-cmd": "@init-setup",
+        "post-update-cmd": "@init-setup",
+        "clean": [
+            "drunomics\\Composer\\CleanCommand::runCommand"
+        ],
+        "cs": "phpcs --colors",
+        "cbf": "phpcbf",
+        "check-security": "security-checker security:check",
+        "test": "behat -p vagrant --colors"
+    },
+    "extra": {
+        "drupal-scaffold": {
+            "initial": {
+                "sites/default/default.services.yml": "web/sites/default/services.yml",
+                "sites/example.settings.local.php": "web/sites/example.local.settings.php"
+            },
+            "excludes": [
+                "sites/development.services.yml",
+                "sites/example.settings.local.php"
+            ]
+        },
+        "installer-types": ["library", "npm-asset", "bower-asset"],
+        "installer-paths": {
+            "drush/contrib/{$name}": ["type:drupal-drush"],
+            "web/core": ["type:drupal-core"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "web/libraries/{$name}/": [
+                "type:drupal-library",
+                "type:npm-asset",
+                "type:bower-asset"
+            ],
+            "web/modules/drunomics/{$name}": ["vendor:drunomics"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"]
+        },
+        "merge-plugin": {
+            "include": [
+                "web/modules/custom/*/composer.json"
+            ],
+            "recurse": false,
+            "replace": false,
+            "merge-extra": false
+        },
+        "tools": {
+            "phapp": {
+                "url": "https://github.com/drunomics/phapp-cli/releases/download/0.5.0-beta2/phapp.phar",
+                "version": "0.5.0-beta2"
+            }
+        },
+        "scripts-description": {
+            "clean": "Removes files of installed packages.",
+            "cs": "Run coding style checks using phpcs.",
+            "cbf": "Run coding style fixes using phpcbf.",
+            "check-security": "Verify only securie packages are installed.",
+            "install-phar-tools": "Installs phar tools used by this project.",
+            "test": "Run tests."
+        },
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true
+    },
+    "config": {
+        "platform": {
+            "php": "7.0"
+        },
+        "sort-packages": true,
+        "preferred-install": {
+            "drunomics/*": "source",
+            "*": "dist"
+        }
+    },
+    "suggest": {
+        "drunomics/dsk_media": "1.*",
+        "drunomics/dsk_devel": "1.*"
+    }
+}
