@@ -26,3 +26,4 @@ if (empty($env_settings_active)) {
 }
 
 include __DIR__ . '/../development.settings.php';
+$settings['install_profile'] = 'contenta_jsonapi';
