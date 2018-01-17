@@ -1,7 +1,7 @@
 <?php
 
 $config_directories = array(
-  CONFIG_SYNC_DIRECTORY => 'profiles/contrib/contenta_jsonapi/config/sync',
+  CONFIG_SYNC_DIRECTORY => '../config/sync',
 );
 
 $settings['hash_salt'] = '62eb490de2ba6b42a58f2fe70c9099878b182d80cade1d0a5915a43b557bb69a';

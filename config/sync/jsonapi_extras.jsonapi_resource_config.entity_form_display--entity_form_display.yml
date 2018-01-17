@@ -1,0 +1,56 @@
+uuid: e61ceed6-c916-46b9-8c9c-3f5da81e8c4d
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - recipes_magazin_contenta
+_core:
+  default_config_hash: lpEClEBZ_HMDUv9EzFpqBLhyqWP0f09N4nrCtWLG_Ro
+id: entity_form_display--entity_form_display
+disabled: true
+path: entity_form_display/entity_form_display
+resourceType: entity_form_display--entity_form_display
+resourceFields:
+  id:
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+    disabled: false
+  status:
+    fieldName: status
+    publicName: status
+    enhancer:
+      id: ''
+    disabled: false
+  revision:
+    fieldName: revision
+    publicName: revision
+    enhancer:
+      id: ''
+    disabled: false
+  bundle:
+    fieldName: bundle
+    publicName: bundle
+    enhancer:
+      id: ''
+    disabled: false
+  langcode:
+    fieldName: langcode
+    publicName: langcode
+    enhancer:
+      id: ''
+    disabled: false
+  default_langcode:
+    fieldName: default_langcode
+    publicName: default_langcode
+    enhancer:
+      id: ''
+    disabled: false
+  uuid:
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+    disabled: false

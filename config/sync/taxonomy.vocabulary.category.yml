@@ -1,0 +1,14 @@
+uuid: 5ccb9eef-30b8-431e-81d5-31057e89ac8c
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - recipes_magazin
+_core:
+  default_config_hash: eWeU3VpBsgCLbAp7IL3IwcrOA5dFjqzA15P9Vq5BDnQ
+name: Category
+vid: category
+description: ''
+hierarchy: 0
+weight: 0
