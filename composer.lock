@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "40c25f71323018de2371d1b7eb95e27d",
+    "content-hash": "bc8f49483683d2b9523e433d109652e3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2832,6 +2832,10 @@
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "#2938632: Disable page cache for the blueprint request": "https://www.drupal.org/files/issues/d8_subrequests_no_cache.patch",
+                    "#2938625: Notices of GET blueprint requests cause a broken page cache": "https://www.drupal.org/files/issues/d8_subrequests_notices.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

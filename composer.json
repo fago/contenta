@@ -136,6 +136,12 @@
             "replace": false,
             "merge-extra": false
         },
+        "patches": {
+          "drupal/subrequests": {
+              "#2938632: Disable page cache for the blueprint request": "https://www.drupal.org/files/issues/d8_subrequests_no_cache.patch",
+              "#2938625: Notices of GET blueprint requests cause a broken page cache": "https://www.drupal.org/files/issues/d8_subrequests_notices.patch"
+          }
+        },
         "tools": {
             "phapp": {
                 "url": "https://github.com/drunomics/phapp-cli/releases/download/0.5.0-beta2/phapp.phar",
