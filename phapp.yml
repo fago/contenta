@@ -24,8 +24,7 @@ commands:
     # Skip config-import when there is no config.
     if [ -f config/sync/core.extension.yml ]; then
       drush cim -y && drush cr
-    fi &&
-    drush locale:update
+    fi
     
   install: |
     chmod +w web/sites/default/settings.php &&
@@ -37,6 +36,5 @@ commands:
     # Skip config-import when there is no config.
     if [ -f config/sync/core.extension.yml ]; then
       drush cim -y && drush cr
-    fi &&
-    drush locale:update
+    fi
     
